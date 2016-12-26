@@ -2,6 +2,8 @@ package com.ceria.pkl.voteq.models.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by win 8 on 10/21/2016.
  */

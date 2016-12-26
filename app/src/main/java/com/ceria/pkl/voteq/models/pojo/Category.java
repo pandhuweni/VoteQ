@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName;
 public class Category {
     @SerializedName("id")
     public String id;
-    @SerializedName("cetegory")
+    @SerializedName("category")
     public String category;
+
+    public String getCategory(){
+        return category;
+    }
 }

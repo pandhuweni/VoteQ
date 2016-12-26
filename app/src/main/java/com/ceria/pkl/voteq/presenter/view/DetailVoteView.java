@@ -79,7 +79,7 @@ public class DetailVoteView implements DetailVoteCallBack {
                   Vote vote = response.body().data;
                     String category;
                     try {
-                        category = vote.category.category;
+                        category = vote.category;
                     }catch (Exception e){
                         category = "Uncategorized";
                     }

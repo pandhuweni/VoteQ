@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class CardActivity extends Fragment implements GetAllVoteInterface {
     ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
     private GetAllVoteView presenter;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
@@ -43,7 +45,9 @@ public class CardActivity extends Fragment implements GetAllVoteInterface {
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
         progressDialog = new ProgressDialog(getContext());
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
+        //RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

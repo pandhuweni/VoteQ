@@ -16,6 +16,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,7 @@ import com.ceria.pkl.voteq.R;
 import com.ceria.pkl.voteq.adapter.HomeAdapter;
 import com.ceria.pkl.voteq.adapter.VoteAdapter;
 import com.ceria.pkl.voteq.itemAdapter.VoteItem;
+import com.ceria.pkl.voteq.models.pojo.Vote;
 import com.ceria.pkl.voteq.presenter.view.GetAllVoteView;
 import com.ceria.pkl.voteq.presenter.viewinterface.GetAllVoteInterface;
 
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
     private GetAllVoteView presenter;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +96,10 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         progressDialog = new ProgressDialog(this);
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        adapter = new VoteAdapter(this, voteItemList, token);
+        //RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
